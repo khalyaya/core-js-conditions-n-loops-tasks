@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -60,8 +69,17 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  if (queen.x === queen.y && king.x === king.y) {
+    return true;
+  }
+  if (queen.x + queen.y === king.x + king.y) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -82,8 +100,18 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) {
+    return false;
+  }
+  if (
+    (a === b && a + b > c) ||
+    (a === c && a + c > b) ||
+    (c === b && c + b > a)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -100,8 +128,33 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let romanNum = '';
+  let localNum = num;
+  const romanDecimal = 'X';
+  const romanNine = 'IX';
+  const romanFive = 'V';
+  const romanFour = 'IV';
+  const romanOne = 'I';
+  while (localNum > 0) {
+    if (localNum >= 10) {
+      romanNum += romanDecimal;
+      localNum -= 10;
+    } else if (localNum === 9) {
+      romanNum += romanNine;
+      localNum -= 9;
+    } else if (localNum < 9 && localNum >= 5) {
+      romanNum += romanFive;
+      localNum -= 5;
+    } else if (localNum === 4) {
+      romanNum += romanFour;
+      localNum -= 4;
+    } else if (localNum < 4) {
+      romanNum += romanOne;
+      localNum -= 1;
+    }
+  }
+  return romanNum;
 }
 
 /**
